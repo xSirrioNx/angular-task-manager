@@ -1,0 +1,18 @@
+<mat-card>
+  <mat-card-title>{{tasksList.name}}</mat-card-title>
+  <mat-card-content>
+    <mat-accordion >
+      <!--<mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Personal data
+          </mat-panel-title>
+          <mat-panel-description>
+            Type your name and age
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+      </mat-expansion-panel>-->
+      <app-task *ngFor="let task of tasks" [task]="task"></app-task>
+    </mat-accordion>
+  </mat-card-content>
+</mat-card>

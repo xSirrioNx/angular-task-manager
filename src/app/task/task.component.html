@@ -1,0 +1,17 @@
+<mat-expansion-panel>
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      <h4 mat-line>{{task.name}}</h4>
+    </mat-panel-title>
+    <mat-panel-description>
+      <p mat-line> {{task.date | date}} </p>
+    </mat-panel-description>
+
+
+  </mat-expansion-panel-header>
+
+  <p>{{task.description}}</p>
+  <mat-action-row>
+    <button mat-button color="primary">Next</button>
+  </mat-action-row>
+</mat-expansion-panel>

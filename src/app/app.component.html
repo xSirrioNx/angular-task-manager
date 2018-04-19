@@ -1,0 +1,8 @@
+<mat-toolbar color="primary">
+  <span>{{title}}</span>
+</mat-toolbar>
+<section class="app-content">
+  <div class="app-content-list-wrapper">
+      <app-tasks-list *ngFor="let tasksList of tasksLists" [tasksList]="tasksList"></app-tasks-list>
+  </div>
+</section>
