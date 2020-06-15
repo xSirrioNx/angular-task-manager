@@ -1,0 +1,21 @@
+<h1 mat-dialog-title>{{data.title}}</h1>
+<div mat-dialog-content>
+  <form [formGroup]="form">
+    <mat-form-field>
+      <input matInput [(ngModel)]="data.list.name" placeholder="List name" [formControlName]="'name'" required>
+      <mat-error *ngIf="form.get('name').errors">{{getErrors(form.get('name').errors)}}</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-select placeholder="Position" [(ngModel)]="data.list.position" [formControlName]="'position'" required>
+        <mat-option *ngFor="let pos of positions" [value]="pos">
+          {{ pos }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="form.get('position').errors">{{getErrors(form.get('position').errors)}}</mat-error>
+    </mat-form-field>
+  </form>
+</div>
+<div mat-dialog-actions align="end">
+  <button mat-button (click)="onCancelClick()">Cancel</button>
+  <button mat-button [mat-dialog-close]="data.list" [disabled]="!isFormValid()" cdkFocusInitial>Ok</button>
+</div>

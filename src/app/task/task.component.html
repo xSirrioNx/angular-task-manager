@@ -1,17 +1,42 @@
-<mat-expansion-panel>
-  <mat-expansion-panel-header>
-    <mat-panel-title>
-      <h4 mat-line>{{task.name}}</h4>
-    </mat-panel-title>
-    <mat-panel-description>
-      <p mat-line> {{task.date | date}} </p>
-    </mat-panel-description>
+<mat-card class="task-card">
+  <mat-card-header (click)="openTaskDialog(true)">
+    <mat-card-title><h4>{{task.name}}</h4></mat-card-title>
+    <mat-card-subtitle>
+      <mat-chip-list>
+        <mat-chip [ngClass]="getClassByDate()" class="task-chip"><mat-icon>access_time</mat-icon>&nbsp;{{task.date | date}}</mat-chip>
+      </mat-chip-list>
+    </mat-card-subtitle>
+    <button mat-icon-button [matMenuTriggerFor]="taskMenu" class="task-menu-button" (click)="$event.stopPropagation()" (mousedown)="$event.stopPropagation()">
+      <mat-icon>more_horiz</mat-icon>
+    </button>
+    <mat-menu #taskMenu="matMenu">
+      <button mat-menu-item (click)="openTaskDialog(false)">
+        <mat-icon>edit</mat-icon>
+        <span>Edit task</span>
+      </button>
+      <button mat-menu-item (click)="openTaskDialog(true)">
+        <mat-icon>remove_red_eye</mat-icon>
+        <span>View task</span>
+      </button>
+      <button mat-menu-item (click)="openRemoveDialog()">
+        <mat-icon>delete</mat-icon>
+        <span>Remove task</span>
+      </button>
+      <button mat-menu-item (click)="task.isReady=!task.isReady" *ngIf="!task.isReady">
+        <mat-icon>check</mat-icon>
+        <span>Mark as ready</span>
+      </button>
+    </mat-menu>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-expansion-panel class="mat-elevation-z0" (mousedown)="$event.stopPropagation()">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <h5 mat-line>Description</h5>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
 
-
-  </mat-expansion-panel-header>
-
-  <p>{{task.description}}</p>
-  <mat-action-row>
-    <button mat-button color="primary">Next</button>
-  </mat-action-row>
-</mat-expansion-panel>
+      <p>{{task.description}}</p>
+    </mat-expansion-panel>
+  </mat-card-content>
+</mat-card>

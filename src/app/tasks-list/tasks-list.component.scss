@@ -1,5 +1,28 @@
-.mat-card {
-  max-width: 300px;
-  min-width: 200px;
-  margin: 0 8px;
+:host {
+  .tasks-list-card {
+    max-width: 500px;
+    min-width: 300px;
+    margin: 0 8px;
+    background-color: #e2e4e6;
+    .list-title {
+      font-size: 24px;
+      font-weight: 400;
+    }
+    .menu-button {
+      position: absolute;
+      right: 16px;
+      top: 16px;
+    }
+    .mat-card-content {
+      min-height: 50px;
+      .task-card {
+        &:first-of-type {
+          margin-top: 0;
+        }
+        &:last-of-type {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
 }

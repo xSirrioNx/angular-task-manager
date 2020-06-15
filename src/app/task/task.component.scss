@@ -1,0 +1,44 @@
+@import "~@angular/material/theming";
+@include mat-core();
+:host {
+  .task-card {
+    padding: 8px;
+    margin: 8px 0;
+    .task-chip {
+      &:hover,
+      &:focus {
+        background-color: mat-color($mat-grey, A400, 0.8);
+      }
+      &.danger {
+        background-color: mat-color($mat-red, A100, 0.8);
+        &:hover,
+        &:focus {
+          background-color: mat-color($mat-red, A200, 0.8) !important;
+        }
+      }
+      &.warning {
+        background-color: mat-color($mat-orange, A100, 0.8);
+        &:hover,
+        &:focus {
+          background-color: mat-color($mat-orange, A200, 0.8) !important;
+        }
+      }
+      &.ready {
+        background-color: mat-color($mat-green, A100, 0.8);
+        &:hover,
+        &:focus {
+          background-color: mat-color($mat-green, A200, 0.8) !important;
+        }
+      }
+    }
+    .task-menu-button {
+      position: absolute;
+      right: 8px;
+      top: 8px;
+      color: rgba(0, 0, 0, 0.5);
+      &:hover {
+        color: #000;
+      }
+    }
+  }
+}

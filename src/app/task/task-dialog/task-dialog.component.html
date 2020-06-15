@@ -1,0 +1,58 @@
+<div class="header">
+  <h1 mat-dialog-title>{{data.title}}</h1>
+  <button mat-icon-button *ngIf="data.viewOnly" (click)="switchToEditMode();" class="task-edit-button">
+    <mat-icon>edit</mat-icon>
+  </button>
+</div>
+<div mat-dialog-content>
+  <form [formGroup]="form">
+
+    <mat-form-field class="full-width">
+      <input matInput [(ngModel)]="data.task.name" [formControlName]="'name'" placeholder="Name" required>
+      <mat-error *ngIf="form.get('name').errors">{{getErrors(form.get('name').errors)}}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <textarea matInput [(ngModel)]="data.task.description" placeholder="Description" [formControlName]="'description'"
+                matTextareaAutosize
+                matAutosizeMinRows="2" matAutosizeMaxRows="10" required></textarea>
+      <mat-error *ngIf="form.get('description').errors">{{getErrors(form.get('description').errors)}}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-select placeholder="Tasks list" [(ngModel)]="data.task.listId" [formControlName]="'tasksList'"  (ngModelChange)="onTasksListChange($event);" required>
+        <mat-option *ngFor="let tasksList of tasksLists" [value]="tasksList.id">
+          {{ tasksList.name }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="form.get('tasksList').errors">{{getErrors(form.get('tasksList').errors)}}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="date-form-field">
+      <input matInput [(ngModel)]="data.task.date" [matDatepicker]="picker" [formControlName]="'date'"
+             placeholder="Expire date" required>
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+      <mat-error *ngIf="form.get('date').errors">{{getErrors(form.get('date').errors)}}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-select placeholder="Position" [(ngModel)]="data.task.position" [formControlName]="'position'" required>
+        <mat-option *ngFor="let pos of positions" [value]="pos">
+          {{ pos }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="form.get('position').errors">{{getErrors(form.get('position').errors)}}</mat-error>
+    </mat-form-field>
+
+    <div class="mat-form-field ready-slider">
+      <mat-slide-toggle [(ngModel)]="data.task.isReady" [formControlName]="'isReady'" [color]="'accent'">
+        {{data.task.isReady?"Ready!":"Not ready"}}
+      </mat-slide-toggle>
+    </div>
+  </form>
+</div>
+<div mat-dialog-actions align="end">
+  <button mat-button (click)="onCancelClick()" cdkFocusInitial>Cancel</button>
+  <button *ngIf="!data.viewOnly" mat-button [mat-dialog-close]="data.task" cdkFocusInitial [disabled]="!isFormValid()">Ok</button>
+</div>

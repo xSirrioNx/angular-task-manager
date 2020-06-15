@@ -1,15 +1,18 @@
-import { TestBed, inject } from '@angular/core/testing';
+import { TestBed, inject } from "@angular/core/testing";
 
-import { TasksListService } from './tasks-list.service';
+import { TasksListService } from "./tasks-list.service";
 
-describe('TasksListService', () => {
+describe("TasksListService", () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [TasksListService]
     });
   });
 
-  it('should be created', inject([TasksListService], (service: TasksListService) => {
-    expect(service).toBeTruthy();
-  }));
+  it(
+    "should be created",
+    inject([TasksListService], (service: TasksListService) => {
+      expect(service).toBeTruthy();
+    })
+  );
 });

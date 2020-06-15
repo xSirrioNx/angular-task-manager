@@ -1,25 +1,41 @@
-// Import theming functions
-@import '~@angular/material/theming';
-// Import your custom theme
+@import "~@angular/material/theming";
+
 @include mat-core();
-.app-content {
-  position: absolute;
-  top: 64px;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  overflow: auto;
-  background-color: mat-color($mat-deep-purple, A100);
-  padding: 0 8px;
-  .app-content-list-wrapper {
-    display: flex;
-    flex-direction: row;
-    flex-grow: 1;
-    height: 100%;
-    padding: 16px 0;
-    box-sizing: border-box;
-    align-items: flex-start;
-    align-content: flex-start;
+:host {
+  .mat-toolbar {
+    justify-content: space-between;
+  }
+  .app-content {
+    position: absolute;
+    top: 64px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    overflow: auto;
+    background-color: mat-color($mat-deep-purple, A100);
+    .app-content-list-wrapper {
+      display: flex;
+      flex-direction: row;
+      flex-grow: 1;
+      height: 100%;
+      padding: 16px 0;
+      box-sizing: border-box;
+      align-items: flex-start;
+      align-content: flex-start;
+      > * {
+        &:first-of-type {
+          margin-left: 8px;
+        }
+        &:last-of-type {
+          margin-right: 8px;
+        }
+      }
+    }
   }
 
+  .list-fab {
+    position: absolute;
+    bottom: 32px;
+    right: 32px;
+  }
 }

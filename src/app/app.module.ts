@@ -1,35 +1,50 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import {HttpClientModule} from '@angular/common/http';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatToolbarModule} from '@angular/material';
-import {MatListModule} from '@angular/material/list';
-import {MatIconModule} from '@angular/material';
-import {MatButtonModule} from '@angular/material';
+import { BrowserModule } from "@angular/platform-browser";
+import { NgModule } from "@angular/core";
+import { HttpClientModule } from "@angular/common/http";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import {DragulaModule} from 'ng2-dragula';
+import 'hammerjs';
 
-import { AppComponent } from './app.component';
-import { TasksListService } from './services/tasks-list.service';
+import {
+  MatToolbarModule,
+  MatIconModule,
+  MatButtonModule
+} from "@angular/material";
 
-import {TasksListModule} from './tasks-list/tasks-list.module';
+import { PerfectScrollbarModule } from "ngx-perfect-scrollbar";
+import { PERFECT_SCROLLBAR_CONFIG } from "ngx-perfect-scrollbar";
+import { PerfectScrollbarConfigInterface } from "ngx-perfect-scrollbar";
 
+import { AppComponent } from "./app.component";
+import { TasksListService } from "./services/tasks-list.service";
 
+import { TasksListModule } from "./tasks-list/tasks-list.module";
+import { TasksListDialogComponent } from "./tasks-list/tasks-list-dialog/tasks-list-dialog.component";
+
+const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
+  suppressScrollX: false
+};
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     HttpClientModule,
     BrowserAnimationsModule,
     MatToolbarModule,
-    MatListModule,
     MatIconModule,
-    // MatCardModule,
     MatButtonModule,
-    TasksListModule
-    // MatExpansionModule
+    TasksListModule,
+    PerfectScrollbarModule,
+    DragulaModule
   ],
-  providers: [TasksListService],
+  entryComponents: [TasksListDialogComponent],
+  providers: [
+    TasksListService,
+    {
+      provide: PERFECT_SCROLLBAR_CONFIG,
+      useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG
+    }
+  ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

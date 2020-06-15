@@ -1,0 +1,28 @@
+:host {
+  .mat-form-field {
+    float: left;
+    max-width: 159px;
+    &.full-width {
+      width: 100%;
+      max-width: 100%;
+    }
+    &.date-form-field {
+      padding-left: 16px;
+    }
+    &.ready-slider {
+      line-height: 46px;
+      padding-left: 16px;
+      .mat-slide-toggle.mat-disabled {
+        color: rgba(0, 0, 0, .38);
+      }
+    }
+  }
+  .header {
+    display: flex;
+    h1 {
+      flex-grow: 1;
+    }
+  }
+
+
+}

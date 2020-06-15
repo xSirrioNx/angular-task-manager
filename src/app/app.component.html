@@ -1,8 +1,14 @@
 <mat-toolbar color="primary">
   <span>{{title}}</span>
+  <button mat-raised-button [color]="'accent'" (click)="clearState()">Clear state</button>
 </mat-toolbar>
 <section class="app-content">
-  <div class="app-content-list-wrapper">
-      <app-tasks-list *ngFor="let tasksList of tasksLists" [tasksList]="tasksList"></app-tasks-list>
+  <perfect-scrollbar>
+  <div class="app-content-list-wrapper" [dragula]="'dnd-lists'" [dragulaModel]="tasksLists" [dragulaOptions]="dragulaOptions">
+      <app-tasks-list *ngFor="let tasksList of tasksLists" [tasksList]="tasksList" (listChange)="onListChange($event)"></app-tasks-list>
   </div>
+  </perfect-scrollbar>
 </section>
+<button mat-fab [color]="'accent'" class="list-fab" (click)="openDialog()">
+  <mat-icon aria-label="Add list">add</mat-icon>
+</button>
